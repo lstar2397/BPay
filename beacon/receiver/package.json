@@ -1,0 +1,16 @@
+{
+  "name": "beacon-receiver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "eddystone-beacon-scanner": "^3.0.0",
+    "noble": "^1.9.1",
+    "request": "^2.88.0"
+  }
+}
