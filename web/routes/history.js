@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     MongoClient.connect(dbUrl, (err, client) => {
         if (err) throw err;
         let dbo = client.db('BPay');
-        dbo.collection('history').find({}).toArray((err, result) => {
+        dbo.collection('history').find({}).sort({ paidTimestamp: -1 }).toArray((err, result) => {
             if (err) throw err;
             res.send(result);
             client.close();
