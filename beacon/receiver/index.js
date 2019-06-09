@@ -16,7 +16,7 @@ eddystoneBeaconScanner.on('lost', data => {
     postBeaconToWebService(data, 'get off', 3);
 });
 
-function postBeaconToWebService(data, paymentType) {
+function postBeaconToWebService(data, paymentType, count) {
     if (count <= 0) return;
     tokenGenerator.getToken(token => {
         let paidTimestamp = new Date(); 
