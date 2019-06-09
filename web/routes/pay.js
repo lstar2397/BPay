@@ -36,7 +36,7 @@ function updatePaymentHistory(token, beforeAmount, afterAmount, paymentType, pai
         if (err) throw err;
         let dbo = client.db('BPay');
         let myObj = { 'token': token, 'beforeAmount': beforeAmount, 'afterAmount': afterAmount, 'paymentType': paymentType, 'paidTimestamp': paidTimestamp };
-        dbo.collection('history').ine(myObj, (err, result) => {
+        dbo.collection('history').insertOne(myObj, (err, result) => {
             if (err) {
                 console.log('결제내역 추가 에러');
             } else {
