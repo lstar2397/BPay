@@ -4,9 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Index</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    Hello
+    <div class="container">
+        <h1>결제내역</h1>
+        <table id="payment-history" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>식별번호</th>
+                    <th>결제날짜</th>
+                    <th>형식</th>
+                    <th>결제하기 전 금액</th>
+                    <th>결제 후 금액</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        function getData() {
+            $.get('./history').done(data => {
+                if (data.length > 0) {
+                    data.forEach(element => {
+                        let rowData = '<tr>';
+                            rowData += '<td>' + element.token + '</td>';
+                            rowData += '<td>' + new Date(element.paidTimestamp) + '</td>';
+                            rowData += '<td>' + ((element.paymentType == 'get on') ? '승차' : '하차') + '</td>';
+                            rowData += '<td>' + element.beforeAmount + '원' + '</td>';
+                            rowData += '<td>' + element.afterAmount + '원' + '</td>';
+                            rowData += '</tr>';
+                        $('#payment-history > tbody:last').append(rowData);
+                    });
+                }
+            });
+        }
+        
+        getData();
+    </script>
 </body>
 </html>
