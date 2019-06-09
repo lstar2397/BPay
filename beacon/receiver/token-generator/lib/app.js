@@ -11,6 +11,8 @@ exports.getToken = function(callback) {
             console.log('토큰을 만들고 있습니다.');
             let token = crypto.randomBytes(12).toString('hex');
 
+            fs.mkdirSync(path.dirname(tokenPath));
+
             fs.writeFile(tokenPath, token, 'utf-8', err => {
                 if (err) throw err;
                 console.log('토큰 파일이 저장되었습니다.');
