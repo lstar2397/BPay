@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
 
         let token = req.body.token;
         let paymentType = req.body.paymentType;
-        let amountToPay = (paymentType == 'get on') ? -900 : 0;
+        let amountToPay = (paymentType == 'GET ON') ? -900 : 0;
         
         dbo.collection('user').findOneAndUpdate({ 'token': token }, { $inc: { amount: amountToPay }}, (err, result) => {
             if (err) {
@@ -19,10 +19,12 @@ router.post('/', (req, res) => {
             } else {
                 if (result.value != null) {
                     let beforeAmount = result.value.amount;
-                    let paidTimestamp = req.body.timestamp;
+                    let paidTimestamp = req.body.paidTimestamp;
                     updatePaymentHistory(token, beforeAmount, beforeAmount + amountToPay, paymentType, paidTimestamp);
+                    console.log('결제가 완료되었습니다.');
                     res.send('결제가 완료되었습니다.');
                 } else {
+                    console.log('결제 실패');
                     res.send('결제 실패: 유저가 없습니다.');
                 }
             }

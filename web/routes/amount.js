@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
+const router = express.Router();
 const dbUrl = 'mongodb://localhost:27017/';
 
 router.post('/', (req, res) => {

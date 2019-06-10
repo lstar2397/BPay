@@ -1,10 +1,11 @@
 const eddystoneBeacon = require('eddystone-beacon');
 
-let address = '192.168.0.135';
-if (process.argv.length > 2) {
-    address = process.argv[2];
+if (process.argv.length != 3) {
+    console.log('Usage: node index.js 192.168.0.2');
+    process.exit();
 }
 
+let address = process.argv[2];
 let url = 'http://' + address + '/pay';
 let options = {
     name: 'BPay Beacon',
