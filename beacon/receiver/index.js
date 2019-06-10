@@ -34,7 +34,6 @@ function postBeaconToWebService(data, paymentType) {
             if (!err) {
                 console.log('성공적으로 ' + strPaymentType + '가 완료되었습니다.');
             } else {
-                console.log(res);
                 console.log(strPaymentType + '를 시도하는데 에러가 발생하였습니다.');
             }
         });

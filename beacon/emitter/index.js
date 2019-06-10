@@ -1,7 +1,7 @@
 const eddystoneBeacon = require('eddystone-beacon');
 
 if (process.argv.length != 3) {
-    console.log('Usage: node index.js 192.168.0.2');
+    console.log('Usage: node index.js {IP Address}');
     process.exit();
 }
 
